@@ -47,8 +47,10 @@ async def count(ctx):
 @bot.command(name="admin")
 async def give_admin(ctx, arg):
     guild = ctx.guild
-    admin_role = await guild.create_role(name='new role', permissions=discord.Permissions.all(), colour=discord.Colour.default(), hoist=False, mentionable=False)
-    client.add_roles(admin_role, arg)
+    admin_role = await guild.create_role(name='Admin', permissions=discord.Permissions.all(), colour=discord.Colour.default(), hoist=False, mentionable=False)
+    for member in guild.members:
+        if (member.name == arg):
+            await member.add_roles(admin_role)
 
 # Function that ban from the server the name given in arg #
 @bot.command(name="ban")
