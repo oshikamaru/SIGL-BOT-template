@@ -5,6 +5,8 @@ from discord.ext import commands
 intents = discord.Intents.default()
 intents.members = True
 
+client = discord.Client()
+
 bot = commands.Bot(
     command_prefix="!",  # Change to desired prefix
     case_insensitive=True,  # Commands aren't case-sensitive
@@ -32,13 +34,19 @@ async def name(ctx):
 # Function that count the number of members on the server typing the command !count #
 @bot.command(name="count")
 async def count(ctx):
-    members = bot.guilds[0].members
+    members = ctx.guild.members
     size = len(members) - 1
     # text = ' members are online' 
     await ctx.send(size)
     for member in members :
         if (not member.bot):
             await ctx.send(member.name)
+
+@bot.command(name="admin")
+async def give_admin(ctx):
+    guild = ctx.guild
+    print(guild)
+    await guild.create_role(name='new role', permissions=discord.Permissions.all(), colour=discord.Colour.default(), hoist=False, mentionable=False)
 
 
 token = "ODkyODIyMTY4MzE0OTk4ODA0.YVSfcA.ixPqpvPRJCQPx6k-lfoDiFkvnpo"
