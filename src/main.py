@@ -6,7 +6,7 @@ bot = commands.Bot(
     case_insensitive=True  # Commands aren't case-sensitive
 )
 
-bot.author_id = 0000000  # Change to your discord id!!!
+bot.author_id = 336443857103486976  # Change to your discord id!!!
 
 @bot.event
 async def on_ready():  # When the bot is ready
@@ -17,5 +17,11 @@ async def on_ready():  # When the bot is ready
 async def pong(ctx):
     await ctx.send('pong')
 
-token = "<MY_SUPER_TOKEN>"
+# Function that write back the name of the user typing the command !name #
+@bot.event
+async def on_message(message):
+    if (message.content == "!name"):
+        await message.channel.send(message.author)
+
+token = "ODkyODIyMTY4MzE0OTk4ODA0.YVSfcA.ixPqpvPRJCQPx6k-lfoDiFkvnpo"
 bot.run(token)  # Starts the bot
