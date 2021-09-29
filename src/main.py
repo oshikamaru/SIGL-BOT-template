@@ -65,7 +65,5 @@ async def random_comic(ctx):
     await ctx.send(url)
 
 
-
-
-token = "ODkyODIyMTY4MzE0OTk4ODA0.YVSfcA.ixPqpvPRJCQPx6k-lfoDiFkvnpo"
+token = ""
 bot.run(token)  # Starts the bot
