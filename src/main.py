@@ -1,5 +1,6 @@
 import os
 import discord
+import random
 from discord.ext import commands
 
 intents = discord.Intents.default()
@@ -31,7 +32,7 @@ async def name(ctx):
     await ctx.send(ctx.author)
 
 
-# Function that count the number of members on the server typing the command !count #
+# Function that count the number of members on the server #
 @bot.command(name="count")
 async def count(ctx):
     members = ctx.guild.members
@@ -42,11 +43,21 @@ async def count(ctx):
         if (not member.bot):
             await ctx.send(member.name)
 
+# Function that create an admin role and attribute to the name given in arg #
 @bot.command(name="admin")
 async def give_admin(ctx):
     guild = ctx.guild
     print(guild)
     await guild.create_role(name='new role', permissions=discord.Permissions.all(), colour=discord.Colour.default(), hoist=False, mentionable=False)
+
+# Function that post a random comic from https://xkcd.com #
+@bot.command(name="xkcd")
+async def random_comic(ctx):
+    random_int = random.randint(1, 2100)
+    url = 'https://xkcd.com/' + str(random_int)
+    await ctx.send(url)
+
+
 
 
 token = "ODkyODIyMTY4MzE0OTk4ODA0.YVSfcA.ixPqpvPRJCQPx6k-lfoDiFkvnpo"
